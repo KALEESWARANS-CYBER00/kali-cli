@@ -44,3 +44,15 @@ def classify_target(target: str) -> str:
     if os.path.isfile(target):
         return "File"
     return "Unknown"
+
+
+def info(label, value):
+    print(f"{GREEN}[+]{RESET} {BOLD}{label:<12}{RESET}: {value}")
+
+
+def warn(msg):
+    print(f"{YELLOW}[*]{RESET} {msg}")
+
+
+def error(msg):
+    print(f"{RED}[-]{RESET} {msg}")
