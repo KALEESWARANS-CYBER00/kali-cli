@@ -1,11 +1,13 @@
-# kali-cli  v1.0
+# kali-cli    ![kali-cli V1.0](https://img.shields.io/badge/version-v0.1-blue)
+
 
 **kali-cli** is a  CLI tool built purely with Python's `argparse`.  
 It provides a stylish ASCII banner, colored output, and basic target classification for IPs, CIDRs, domains, and files.
 
 ---
 
-## Features (v0.1)
+
+## Features (v1.0)
 
 - ASCII banner with colored output
 - Target classification: IPv4, CIDR, Domain, File, Unknown
@@ -62,3 +64,4 @@ MIT License
 Author
 
 kali
+
