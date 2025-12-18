@@ -1,4 +1,4 @@
-# kali-cli  v0.1
+# kali-cli  v1.0
 
 **kali-cli** is a  CLI tool built purely with Python's `argparse`.  
 It provides a stylish ASCII banner, colored output, and basic target classification for IPs, CIDRs, domains, and files.
