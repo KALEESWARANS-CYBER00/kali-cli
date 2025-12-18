@@ -4,7 +4,8 @@ import argparse
 import os
 import re
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
+
 
 RESET = "\033[0m"
 BOLD = "\033[1m"
@@ -97,7 +98,7 @@ def main():
         warn("Starting classification engine")
 
     target_type = classify_target(args.target)
-    timestamp = datetime.utcnow().isoformat() + "Z"
+    timestamp = datetime.now(timezone.utc).isoformat()
 
     if args.verbose:
         warn(f"Target received: {args.target}")
