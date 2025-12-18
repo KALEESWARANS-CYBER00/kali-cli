@@ -56,3 +56,71 @@ def warn(msg):
 
 def error(msg):
     print(f"{RED}[-]{RESET} {msg}")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="kali-cli",
+        description="Hacker-style CLI tool using argparse only",
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+
+    parser.add_argument(
+        "target",
+        help="Target input (IP, CIDR, domain, or file)"
+    )
+
+    parser.add_argument(
+        "-v", "--verbose",
+        action="store_true",
+        help="Enable verbose output"
+    )
+
+    parser.add_argument(
+        "-o", "--output",
+        metavar="FILE",
+        help="Write results to output file"
+    )
+
+    parser.add_argument(
+        "--no-banner",
+        action="store_true",
+        help="Disable banner output"
+    )
+
+    args = parser.parse_args()
+
+    if not args.no_banner:
+        print(BANNER)
+
+    if args.verbose:
+        warn("Starting classification engine")
+
+    target_type = classify_target(args.target)
+    timestamp = datetime.utcnow().isoformat() + "Z"
+
+    if args.verbose:
+        warn(f"Target received: {args.target}")
+        warn(f"Matched type: {target_type}")
+
+    output_lines = []
+    output_lines.append(f"Target     : {args.target}")
+    output_lines.append(f"Type       : {target_type}")
+    output_lines.append(f"Length     : {len(args.target)}")
+    output_lines.append(f"Timestamp  : {timestamp}")
+
+    info("Target", args.target)
+    info("Type", target_type)
+    info("Length", len(args.target))
+    info("Timestamp", timestamp)
+
+    if args.output:
+        try:
+            with open(args.output, "w") as f:
+                f.write("\n".join(output_lines) + "\n")
+            if args.verbose:
+                warn(f"Output written to {args.output}")
+        except Exception as e:
+            error(str(e))
+            sys.exit(1)
+
