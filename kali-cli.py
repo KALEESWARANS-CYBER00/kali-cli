@@ -62,7 +62,7 @@ def error(msg):
 def main():
     parser = argparse.ArgumentParser(
         prog="kali-cli",
-        description="Hacker-style CLI tool using argparse only",
+        description="argparse-style CLI tool using argparse only",
         formatter_class=argparse.RawTextHelpFormatter,
     )
 
